@@ -85,6 +85,12 @@ properties(
                                 choices    : 'ccc\nddd',
                                 description: 'select another choice : ',
                                 name       : 'choice2'
+                        ],
+                          [
+                                $class     : 'ChoiceParameterDefinition',
+                                choices    : 'eee\nfff',
+                                description: 'select another choice : ',
+                                name       : 'choice2'
                         ]
 ]]])
 }
