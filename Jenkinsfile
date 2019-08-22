@@ -97,18 +97,9 @@ properties(
 */
 
 node{
-    [$class: 'DynamicReferenceParameter', 
-            choiceType: 'ET_FORMATTED_HTML', 
-            description: 'These are the details in HTML format', 
-            name: 'DetailsInHTML', 
-            omitValueField: false, 
-            randomName: 'choice-parameter-5633384460832175', 
-            referencedParameters: 'Env, Server',
-            script: [
-                  $class: 'ScriptlerScript',
-                  parameters: [[$class: 'org.biouno.unochoice.model.ScriptlerScriptParameter', name: '', value: '$value']],
-                  scriptlerScriptId: 'script.groovy'
-        ]
-    ]
+    parameters {
+        choice(name: 'DataCenter', choices:'Foo\nBar')
+        choice(name: 'AvailabilityZone', choices: if(DataCenter.equals("Foo") {return 'A\nB'} else {return 'C\nD'}))
+    }
 }
 
