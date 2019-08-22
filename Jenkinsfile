@@ -72,7 +72,7 @@ node {
     [
         parameters([
             [
-                $class: 'hudson.model.ChoiceParameter', 
+                $class: 'ChoiceParameter', 
                 choiceType: 'PT_SINGLE_SELECT', 
                 description: 'Select your testcase', 
                 filterable: false, 
