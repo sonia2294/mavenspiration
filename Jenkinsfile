@@ -30,7 +30,7 @@ node{
         }
     }
 }
-*/
+
 
 parameters {
         activeChoiceParam('States') {
@@ -65,3 +65,22 @@ parameters {
             referencedParameter('States')
         }
     }
+   */
+node{
+ properties(
+    [
+        parameters([
+            [
+                $class: 'ChoiceParameter', 
+                choiceType: 'PT_SINGLE_SELECT', 
+                description: 'Select your testcase', 
+                filterable: false, 
+                name: 'testCases', 
+                choices: ['HappyFlow', 'NewYork_HappyFlow']
+            ]
+        ]
+    ), 
+        pipelineTriggers([])
+    ]
+)   
+}
