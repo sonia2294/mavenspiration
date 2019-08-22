@@ -31,7 +31,7 @@ node{
     }
 }
 */
-node{
+
 parameters {
         activeChoiceParam('States') {
             description('Select a state option')
@@ -48,21 +48,20 @@ parameters {
             choiceType('CHECKBOX')
             groovyScript {
                 script('''
-if (States.equals('Sao Paulo')) {
-    return ['Barretos', 'Sao Paulo', 'Itu'];
-} else if (States.equals('Rio de Janeiro')) {
-    return ['Rio de Janeiro', 'Mangaratiba']
-} else if (States.equals('Parana')) {
-    return ['Curitiba', 'Ponta Grossa']
-} else if (States.equals('Acre')) {
-    return ['Rio Branco', 'Acrelandia']
-} else {
-    return ['Unknown state']
-}
-                       ''')
+                        if (States.equals('Sao Paulo')) {
+                            return ['Barretos', 'Sao Paulo', 'Itu'];
+                        } else if (States.equals('Rio de Janeiro')) {
+                            return ['Rio de Janeiro', 'Mangaratiba']
+                        } else if (States.equals('Parana')) {
+                            return ['Curitiba', 'Ponta Grossa']
+                        } else if (States.equals('Acre')) {
+                            return ['Rio Branco', 'Acrelandia']
+                        } else {
+                            return ['Unknown state']
+                        }
+                                               ''')
                 fallbackScript('return ["Script error!"]')
             }
             referencedParameter('States')
         }
     }
-}
