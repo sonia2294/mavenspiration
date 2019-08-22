@@ -72,7 +72,7 @@ node {
     [
         parameters([
             [
-                $class: 'ChoiceParameter', 
+                $class: 'ChoiceParameterDefinition', 
                 choiceType: 'PT_SINGLE_SELECT', 
                 description: 'Select your testcase', 
                 filterable: false, 
