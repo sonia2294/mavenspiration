@@ -1,14 +1,18 @@
-pipeline {
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+node{
+properties(
+    [parameters([choice(choices: ["A", "B", "C"].join("\n"),
+    description: 'Some choice parameter', 
+    name: 'environment')])])
+    
+    switch(param.environment ){
+        case 'A':
+            echo "A will be processed"
+            break
+        case 'B':
+            echo "B will be processed"
+            break
+        case 'C':
+            echo "C will be processed"
+            break
     }
 }
