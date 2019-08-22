@@ -69,33 +69,22 @@ parameters {
 */
 node {
        
-    properties([
-    parameters([
-        [$class: 'ChoiceParameterDefinition', 
-            choiceType: 'PT_SINGLE_SELECT', 
-            description: 'Select the Env Name from the Dropdown List', 
-            filterLength: 1, 
-            filterable: true, 
-            name: 'Env', 
-            randomName: 'choice-parameter-5631314439613978', 
-            script: [
-                $class: 'GroovyScript', 
-                fallbackScript: [
-                    classpath: [], 
-                    sandbox: false, 
-                    script: 
-                        'return[\'Could not get Env\']'
-                ], 
-                script: [
-                    classpath: [], 
-                    sandbox: false, 
-                    script: 
-                        'return["Dev","QA","Stage","Prod"]'
-                ]
-            ]
-        ]
-       
-    ])
-])
-
+properties(
+[
+        [
+                $class              : 'ParametersDefinitionProperty',
+                        parameterDefinitions: [
+                        [
+                                $class     : 'ChoiceParameterDefinition',
+                                choices    : 'aaa\nbbb',
+                                description: 'select your choice : ',
+                                name       : 'choice1'
+                        ],
+                        [
+                                $class     : 'ChoiceParameterDefinition',
+                                choices    : 'ccc\nddd',
+                                description: 'select another choice : ',
+                                name       : 'choice2'
+                        ]
+]]])
 }
