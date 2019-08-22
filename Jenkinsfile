@@ -4,7 +4,7 @@ properties(
     description: 'Some choice parameter', 
     name: 'environment')])])
     
-    switch(param.environment ){
+    switch(params.environment ){
         case 'A':
             echo "A will be processed"
             break
