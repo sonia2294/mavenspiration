@@ -95,23 +95,20 @@ properties(
 ]]])
 }
 */
-def createInputParameters(){
-([[$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false],
- parameters([[$class: 'ChoiceParameter', choiceType: 'PT_RADIO', description: '',
- filterLength: 1, filterable: false, name: 'Select_snapshot_or_release',
-  randomName: 'choice-parameter-1683871426502398',
-   script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: true, 
-    script: 'return "Error"'],
-     script: [classpath: [], sandbox: true,
-      script: '''return[
-            \'snapshots\',\'release\']''']]]]),
-             [$class: 'ThrottleJobProperty', categories: [],
-              limitOneJobWithMatchingParams: false, maxConcurrentPerNode: 0, 
-               maxConcurrentTotal: 0,
-               paramsToUseForLimit: '', throttleEnabled: false, throttleOption: 
-               'project']])
-      }
+
 node{
-    createInputParameters()
+    [$class: 'DynamicReferenceParameter', 
+            choiceType: 'ET_FORMATTED_HTML', 
+            description: 'These are the details in HTML format', 
+            name: 'DetailsInHTML', 
+            omitValueField: false, 
+            randomName: 'choice-parameter-5633384460832175', 
+            referencedParameters: 'Env, Server',
+            script: [
+                  $class: 'ScriptlerScript',
+                  parameters: [[$class: 'org.biouno.unochoice.model.ScriptlerScriptParameter', name: '', value: '$value']],
+                  scriptlerScriptId: 'script.groovy'
+        ]
+    ]
 }
 
