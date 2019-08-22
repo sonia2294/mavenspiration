@@ -94,7 +94,6 @@ properties(
                         ]
 ]]])
 }
-*/
 
 properties([
     parameters([
@@ -182,4 +181,17 @@ pipeline {
       }
   }
 }
+*/
+properties([
+    parameters([
+        extendedChoice( 
+            name: 'PROJECT', 
+            defaultValue: '', 
+            description: 'Sélectionnez le projet à construire.', 
+            type: 'PT_SINGLE_SELECT', 
+            groovyScript: valueKeysScript,
+            descriptionGroovyScript: valueNamesScript
+        )
+    ])
+])
 
