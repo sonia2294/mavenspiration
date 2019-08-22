@@ -95,26 +95,23 @@ properties(
 ]]])
 }
 */
-
+def createInputParameters(){
+([[$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false],
+ parameters([[$class: 'ChoiceParameter', choiceType: 'PT_RADIO', description: '',
+ filterLength: 1, filterable: false, name: 'Select_snapshot_or_release',
+  randomName: 'choice-parameter-1683871426502398',
+   script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: true, 
+    script: 'return "Error"'],
+     script: [classpath: [], sandbox: true,
+      script: '''return[
+            \'snapshots\',\'release\']''']]]]),
+             [$class: 'ThrottleJobProperty', categories: [],
+              limitOneJobWithMatchingParams: false, maxConcurrentPerNode: 0, 
+               maxConcurrentTotal: 0,
+               paramsToUseForLimit: '', throttleEnabled: false, throttleOption: 
+               'project']])
+      }
 node{
-  parameters {
-                  activeChoiceParam('choice1') {
-                      description('select your choice')
-                      choiceType('RADIO')
-                      groovyScript {
-                          script("return['aaa','bbb']")
-                          fallbackScript('return ["error"]')
-                      }
-                  }
-                  activeChoiceReactiveParam('choice2') {
-                      description('select your choice')
-                      choiceType('RADIO')
-                      groovyScript {
-                          script("if(choice1.equals('aaa')){return ['a', 'b']} else {return ['aaaaaa','fffffff']}")
-                          fallbackScript('return ["error"]')
-                      }
-                      referencedParameter('choice1')
-                  }  
-  }
+    createInputParameters()
 }
 
