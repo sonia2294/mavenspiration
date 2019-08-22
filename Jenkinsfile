@@ -121,7 +121,7 @@ properties([
                 ]
             ]
         ], 
-        [$class: 'CascadeChoiceParameter', 
+        [$class: 'org.biouno.unochoice.CascadeChoiceParameter', 
             choiceType: 'PT_SINGLE_SELECT', 
             description: 'Select the Server from the Dropdown List', 
             filterLength: 1, 
