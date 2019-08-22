@@ -65,14 +65,13 @@ parameters {
             referencedParameter('States')
         }
     }
-   */
-node{
- properties([ parameters([
-choice(name: 'ENV', choices: product, description: 'Env'),
-choice(name: 'ENV_NO', choices: envParams(product), description: 'Env No')] )])
-     List<ParameterValue> newParams = [
-    new StringParameterValue('ENV', params.ENV),
-    new StringParameterValue('ENV_NO', params.ENV_NO)
-]
-build(job: "job", parameters: newParams, propagate: false)
+
+*/
+node {
+    myvar = input message: 'Version?',
+        parameters: [
+            [$class: 'hudson.model.StringParameterDefinition', defaultValue: '', description: '', name: 'ver']
+        ]
+
+    echo 'Version is ' + $myvar.ver
 }
