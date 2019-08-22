@@ -68,10 +68,20 @@ parameters {
 
 */
 node {
-    myvar = input message: 'Version?',
-        parameters: [
-            [$class: 'hudson.model.StringParameterDefinition', defaultValue: '', description: '', name: 'ver']
+    properties(
+    [
+        parameters([
+            [
+                $class: 'hudson.model.ChoiceParameter', 
+                choiceType: 'PT_SINGLE_SELECT', 
+                description: 'Select your testcase', 
+                filterable: false, 
+                name: 'testCases', 
+                choices: ['HappyFlow', 'NewYork_HappyFlow']
+            ]
         ]
-
-    echo 'Version is ' + $myvar.ver
+    ), 
+        pipelineTriggers([])
+    ]
+)
 }
