@@ -68,19 +68,11 @@ parameters {
    */
 node{
  properties(
-    [
-        parameters([
-            [
-                $class: 'ChoiceParameter', 
-                choiceType: 'PT_SINGLE_SELECT', 
-                description: 'Select your testcase', 
-                filterable: false, 
-                name: 'testCases', 
-                choices: ['HappyFlow', 'NewYork_HappyFlow']
-            ]
-        ]
-    ), 
-        pipelineTriggers([])
-    ]
-)   
+choice(name: 'ENV', choices: product, description: 'Env'),
+choice(name: 'ENV_NO', choices: envParams(product), description: 'Env No') 
+     List<ParameterValue> newParams = [
+    new StringParameterValue('ENV', params.ENV),
+    new StringParameterValue('ENV_NO', params.ENV_NO),
+]
+build(job: "job", parameters: newParams, propagate: false)
 }
