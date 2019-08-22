@@ -97,11 +97,24 @@ properties(
 */
 
 node{
- properties([ 
-    parameters([
-        [$class: 'ChoiceParameterDefinition', choiceType: 'PT_SINGLE_SELECT', description: 'Select a choice', filterLength: 1, filterable: true, name: 'choice1', randomName: 'choice-parameter-7601235200970', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], script: [classpath: [], sandbox: false, script: 'return[\'aaa\',\'bbb\']']]], 
-        [$class: 'ChoiceParameterDefinition', choiceType: 'PT_SINGLE_SELECT', description: 'Active Choices Reactive parameter', filterLength: 1, filterable: true, name: 'choice2', randomName: 'choice-parameter-7601237141171', referencedParameters: 'choice1', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["error"]'], script: [classpath: [], sandbox: false, script: 'if(choice1.equals("aaa")){return [\'a\', \'b\']} else {return [\'aaaaaa\',\'fffffff\']}']]]
-    ])
-])   
+  parameters {
+                  activeChoiceParam('choice1') {
+                      description('select your choice')
+                      choiceType('RADIO')
+                      groovyScript {
+                          script("return['aaa','bbb']")
+                          fallbackScript('return ["error"]')
+                      }
+                  }
+                  activeChoiceReactiveParam('choice2') {
+                      description('select your choice')
+                      choiceType('RADIO')
+                      groovyScript {
+                          script("if(choice1.equals("aaa")){return ['a', 'b']} else {return ['aaaaaa','fffffff']}")
+                          fallbackScript('return ["error"]')
+                      }
+                      referencedParameter('choice1')
+                  }  
+  }
 }
 
